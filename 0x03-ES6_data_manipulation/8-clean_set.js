@@ -2,7 +2,7 @@ export default function cleanSet(set, startString) {
   if (
     typeof startString !== 'string'
     || startString.length === 0
-    || typeof set !== 'object')
+    || typeof set !== 'object'
   ) return '';
 
   return [...set]
