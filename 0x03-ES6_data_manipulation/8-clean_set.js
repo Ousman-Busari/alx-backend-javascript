@@ -3,9 +3,7 @@ export default function cleanSet(set, startString) {
     !startString
     || typeof startString !== 'string'
     || !set
-  ) {
-    return '';
-  }
+  ) { return ''; }
 
   return [...set]
     .filter((ele) => ele.startsWith(startString))
