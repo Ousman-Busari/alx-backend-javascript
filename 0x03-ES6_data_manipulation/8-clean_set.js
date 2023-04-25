@@ -2,8 +2,9 @@ export default function cleanSet(set, startString) {
   if (
     !startString
     || typeof startString !== 'string'
-    || typeof set !== 'object'
-  ) return '';
+  ) {
+    return '';
+  }
 
   return [...set]
     .filter((ele) => ele.startsWith(startString))
