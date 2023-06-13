@@ -1,11 +1,10 @@
 const fs = require('fs');
 
 function countStudents(filePath) {
-  let db = fs.existsSync(filePath);
-  if (!db) {
-    throw Error('Cannot load the database');
+  if (!fs.existsSync(filePath)) {
+    throw new Error('Cannot load the database');
   } else {
-    db = fs.readFileSync(filePath, 'utf8');
+    const db = fs.readFileSync(filePath, 'utf8');
     const rows = db.split('\n').slice(1, -1);
     console.log(`Number of students: ${rows.length}`);
     const fieldStudentCounts = {};
