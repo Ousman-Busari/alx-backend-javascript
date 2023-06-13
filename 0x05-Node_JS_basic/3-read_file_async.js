@@ -8,7 +8,7 @@ function countStudents(filePath) {
       }
       if (data) {
         const rows = data.split('\n').slice(1, -1);
-        process.stdout.write(`Number of students: ${rows.length}\n`);
+        console.log(`Number of students: ${rows.length}`);
         const fieldStudentCounts = {};
         for (const row of rows) {
           if (row) {
@@ -23,10 +23,10 @@ function countStudents(filePath) {
         for (const field in fieldStudentCounts) {
           if (field) {
             const listStudents = fieldStudentCounts[field];
-            process.stdout.write(
+            console.log(
               `Number of students in ${field}: ${
                 listStudents.length
-              }. List: ${listStudents.join(', ')}\n`,
+              }. List: ${listStudents.join(', ')}`,
             );
           }
         }
