@@ -24,7 +24,6 @@ class StudentsControllers {
   }
 
   static async getAllStudentsByMajor(request, response) {
-    response.setHeader('Content-Type', 'text/plain');
     const { major } = request.params;
     if (major !== 'CS' && major !== 'SWE') {
       response.status(500).end('Major parameter must be CS or SWE');
@@ -33,9 +32,7 @@ class StudentsControllers {
       .then((fieldStudentCounts) => {
         response.status(200);
         const listStudents = fieldStudentCounts[major];
-        response.end(
-          `List: ${listStudents.join(', ')}`,
-        );
+        response.end(`List: ${listStudents.join(', ')}`);
       })
       .catch(() => {
         response.status(500);
