@@ -34,9 +34,7 @@ class StudentsControllers {
         response.status(200);
         const listStudents = fieldStudentCounts[major];
         response.end(
-          `Number of students in ${major}: ${
-            listStudents.length
-          }. List: ${listStudents.join(', ')}`,
+          `List: ${listStudents.join(', ')}`,
         );
       })
       .catch(() => {
