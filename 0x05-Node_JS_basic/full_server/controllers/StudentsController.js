@@ -2,7 +2,6 @@ const readDatabase = require('../utils');
 
 class StudentsControllers {
   static async getAllStudents(request, response) {
-    response.setHeader('Content-Type', 'text/plain');
     let responseText = 'This is the list of our students\n';
     await readDatabase(process.argv[2])
       .then((fieldStudentCounts) => {
