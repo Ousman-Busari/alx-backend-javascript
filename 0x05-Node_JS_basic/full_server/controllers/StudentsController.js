@@ -1,41 +1,41 @@
-const readDatabase = require('../utils');
+const readDatabase = require("../utils");
 
 class StudentsControllers {
   static async getAllStudents(request, response) {
-    let responseText = 'This is the list of our students\n';
     await readDatabase(process.argv[2])
       .then((fieldStudentCounts) => {
+        let responseText = "This is the list of our students\n";
         response.status(200);
         for (const field in fieldStudentCounts) {
           if (field) {
             const listStudents = fieldStudentCounts[field];
             responseText += `Number of students in ${field}: ${
               listStudents.length
-            }. List: ${listStudents.join(', ')}\n`;
+            }. List: ${listStudents.join(", ")}\n`;
           }
         }
+        response.end(responseText.slice(0, -1));
       })
       .catch(() => {
         response.status(500);
-        responseText += 'Cannot load the database\n';
+        response.end("Cannot load the database");
       });
-    response.end(responseText.slice(0, -1));
   }
 
   static async getAllStudentsByMajor(request, response) {
     const { major } = request.params;
-    if (major !== 'CS' && major !== 'SWE') {
-      response.status(500).end('Major parameter must be CS or SWE');
+    if (major !== "CS" && major !== "SWE") {
+      response.status(500).end("Major parameter must be CS or SWE");
     }
     await readDatabase(process.argv[2])
       .then((fieldStudentCounts) => {
         response.status(200);
         const listStudents = fieldStudentCounts[major];
-        response.end(`List: ${listStudents.join(', ')}`);
+        response.end(`List: ${listStudents.join(", ")}`);
       })
       .catch(() => {
         response.status(500);
-        response.end('Cannot load the database');
+        response.end("Cannot load the database");
       });
   }
 }
